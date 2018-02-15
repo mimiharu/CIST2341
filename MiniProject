@@ -1,0 +1,205 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace TwentyOneGame
+{
+    public partial class Form1 : Form
+    {
+        // Global variables
+        // variables for Dice1 and Dice2 images
+        Image img1, img2;
+
+        // variables for Dice1 and Dice2
+        int dice1, dice2;
+        // variable for total number
+        int total = 0;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+
+        private void btnRoll_Click(object sender, EventArgs e)
+        {
+            // create a Random object.
+            Random rand = new Random();
+
+            // if the total is equal or greater than 15
+            if (total >= 15)
+            {
+                // disable and invisible the Dice2
+                picBoxDice2.Visible = false;
+                picBoxDice2.Enabled = false;
+
+                // get a random number between one to six and assign it to dice1
+                dice1 = rand.Next(1, 6);
+
+                // get a total;
+                total += dice1;
+
+                // display the total to the text box
+                txtNumber.Text = total.ToString();
+            }
+            else
+            {
+                // get a random integer between one to six
+                // assign the random number to dice1 and dice2
+                dice1 = rand.Next(1, 6);
+                dice2 = rand.Next(1, 6);
+
+                // get the total;
+                total += dice1 + dice2;
+
+                // display the total to the text box
+                txtNumber.Text = total.ToString();
+            }
+
+            // call the DiceOne Method() and DiceTwo Method()
+            DiceOne();
+            DiceTwo();
+
+            // Display the result - Win or Lose
+            if (total == 21)
+            {
+                // disable the "Roll" button
+                btnRoll.Enabled = false;
+
+                // display the message
+                MessageBox.Show("Congratulation! You won!");
+
+            }
+            else if (total > 21)
+            {
+                // disable the "Roll" button
+                btnRoll.Enabled = false;
+
+                // display the message
+                MessageBox.Show("Sorry, you lost!");
+            }
+        }
+
+        private void btnPlayAgain_Click(object sender, EventArgs e)
+        {
+            // make Dice1 and Dice2 images to visible
+            picBoxDice1.Visible = true;
+            picBoxDice2.Visible = true;
+
+            // change Dice1 and Dice2 images to dice zero pictures
+            picBoxDice1.Image = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_0.png");
+            picBoxDice2.Image = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_0.png");
+
+            // enable the "Roll" button
+            btnRoll.Enabled = true;
+
+            // make the total text box to none
+            txtNumber.Text = "";
+
+            // set the total to zero
+            total = 0;
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // Exit the application
+            Application.Exit();
+        }
+
+        private void DiceOne()
+        {
+            // switch statement for dice1
+            switch (dice1)
+            {
+                // if dice1 is 1, set the img1 to dice image one
+                // display the image to dice1 picture box
+                case 1:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_1.png");
+                    picBoxDice1.Image = img1;
+                    break;
+                // if dice1 is 2, set the img1 to dice image two
+                // display the image to dice1 picture box
+                case 2:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_2.png");
+                    picBoxDice1.Image = img1;
+                    break;
+                // if dice1 is 3, set the img1 to dice image three
+                // display the image to dice1 picture box
+                case 3:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_3.png");
+                    picBoxDice1.Image = img1;
+                    break;
+                // if dice1 is 4, set the img1 to dice image four
+                // display the image to dice1 picture box
+                case 4:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_4.png");
+                    picBoxDice1.Image = img1;
+                    break;
+                // if dice1 is 5, set the img1 to dice image five
+                // display the image to dice1 picture box
+                case 5:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_5.png");
+                    picBoxDice1.Image = img1;
+                    break;
+                // if dice1 is 6, set the img1 to dice image six
+                // display the image to dice1 picture box
+                case 6:
+                    img1 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_6.png");
+                    picBoxDice1.Image = img1;
+                    break;
+            }
+        }
+
+        private void DiceTwo()
+        {
+            // switch statements for DiceTwo
+            switch (dice2)
+            {
+                // if dice2 is 1, set the img2 to dice image one
+                // display the image to dice2 picture box
+                case 1:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_1.png");
+                    picBoxDice2.Image = img2;
+                    break;
+                // if dice2 is 2, set the img2 to dice image two
+                // display the image to dice2 picture box
+                case 2:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_2.png");
+                    picBoxDice2.Image = img2;
+                    break;
+                // if dice2 is 3, set the img2 to dice image three
+                // display the image to dice2 picture box
+                case 3:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_3.png");
+                    picBoxDice2.Image = img2;
+                    break;
+                // if dice2 is 4, set the img2 to dice image four
+                // display the image to dice2 picture box
+                case 4:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_4.png");
+                    picBoxDice2.Image = img2;
+                    break;
+                // if dice2 is 5, set the img2 to dice image five
+                // display the image to dice2 picture box
+                case 5:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_5.png");
+                    picBoxDice2.Image = img2;
+                    break;
+                // if dice2 is 6, set the img2 to dice image six
+                // display the image to dice2 picture box
+                case 6:
+                    img2 = Image.FromFile(@"C:\Users\miche\source\repos\TwentyOneGame\TwentyOneGame\Resources\dice_6.png");
+                    picBoxDice2.Image = img2;
+                    break;
+            }
+        }
+
+    }
+}
