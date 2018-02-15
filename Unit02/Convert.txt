@@ -1,0 +1,60 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Convert
+{
+    public partial class Form2 : Form
+    {
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        private void convt_Click(object sender, EventArgs e)
+        {
+            double f;
+            double c;
+
+            if (rdbF.Checked && double.TryParse(txtF.Text, out f))
+            {
+                this.Text = "Fahrenheit to Celsius";
+                double fah = double.Parse(txtF.Text);
+                double ftoc = ((fah - 32.0) / 9.0) * (5.0);
+                txtC.Text = ftoc.ToString();
+
+            }
+            else if (rdbC.Checked && double.TryParse(txtC.Text, out c))
+            {
+                this.Text = "Celsius to Fahrenheit";
+                double cel = double.Parse(txtC.Text);
+                double ctof = (5.0 / 9.0) * (cel - 32.0);
+                txtF.Text = ctof.ToString();
+            }
+            else
+            {
+                String err = "You forgot to enter a temperature!";
+                MessageBox.Show(err);
+            }
+
+
+        }
+
+        private void ex_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            txtF.Clear();
+            txtC.Clear();
+        }
+    }
+}
