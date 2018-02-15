@@ -1,0 +1,130 @@
+/**********************************************************************************************
+       Below codes are the lab#9.
+***********************************************************************************************/
+
+        // Declare the array as Global Variable
+        const int SIZE = 10;
+        int[] numbers = new int[SIZE];
+
+        // Declare and initialize an accumulator Global Variable to hold array subscripts
+        int index = 0;
+
+
+        // "Add Value" Button
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // try-catch block
+            try
+            {
+                // if the user doesn't enter the number,
+                if (textBox1.Text.Equals(""))
+                {
+                    // Display the error message.
+                    MessageBox.Show("Please enter the number");
+                }
+                // else if the user enter the number
+                else
+                {
+                    // the entered numbers from the textbox add to the array
+                    numbers[index] = Convert.ToInt32(textBox1.Text);
+                    index++;
+
+                    // clear the text box
+                    textBox1.Text = "";
+
+                    // Set the focus to textBox1.
+                    textBox1.Focus();
+                }
+            // Catch the IndexOutOfRangeException
+            } catch (IndexOutOfRangeException ie)
+            {
+                // Display the default error message.
+                MessageBox.Show(ie.Message);
+
+            } // End of Try-Catch Block
+
+        } // End of "Add Value" Button Handling
+
+/******************************************************************************
+ *       End of the lab#9
+* ***************************************************************************/
+
+
+/********************************************************************************************
+                 I add try-catch blocks to handle some exceptions for the lab#9.
+        *********************************************************************************************/
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            // Local variables for numberA, numberB, and the result
+            int num1;
+            int num2;
+            int result;
+
+            // try-catch block
+            try
+            {
+                // get the numbers from the inputboxes and convert to integer
+                num1 = Convert.ToInt32(txtInput1.Text);
+                num2 = Convert.ToInt32(txtInput2.Text);
+
+                // determine if the user clicks "Add" radio button.
+                if (rdbAdd.Checked)
+                {
+                    // add the numbers
+                    result = num1 + num2;
+                    // display the result to the textbox
+                    txtDisplay.Text = result.ToString();
+                }
+                // determine if the user clicks "Subtract" radio button.
+                else if (rdbSubtract.Checked)
+                {
+                    // subtract the numbers.
+                    result = num1 - num2;
+                    // display the result to the textbox.
+                    txtDisplay.Text = result.ToString();
+                }
+                // determine if the user clicks "Multiply" radio button.
+                else if (rdbMultiply.Checked)
+                {
+                    // multiply the numbers.
+                    result = num1 * num2;
+                    // display the result to the textbox.
+                    txtDisplay.Text = result.ToString();
+                }
+                // determine if the user clicks "Divide" radio button.
+                else if (rdbDevide.Checked)
+                {
+                    // try-catch block
+                    try
+                    {
+                        // divide the numbers.
+                        result = num1 / num2;
+                        // display the result to the textbox.
+                        txtDisplay.Text = result.ToString();
+                    }
+                    // catch the DivideByZeroException
+                    catch(DivideByZeroException de)
+                    {
+                        // Display the error message
+                        MessageBox.Show(de.Message);
+                    }
+                }
+                // determine if the user did not select any operator
+                else
+                {
+                    // display the error message.
+                    MessageBox.Show("Please select operator!");
+                }              
+            }
+            // catch the Exception
+            catch(Exception)
+            {
+                // Display the error message
+                MessageBox.Show("Please enter the number!");
+            }
+        }   
+        // end of the "Calculate" Button handling.
+
+  /************************************************************************************************/
+
