@@ -1,0 +1,391 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Area
+{
+    public partial class Form2 : Form
+    {
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+
+        // Circle Radio button 
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the user clicks the Circle RadioButton, only Radius Textbox is visible.
+            if (rdbCir.Checked==true)
+            {
+                txtRadius.Visible = true;
+                txtArea.Visible = false;
+                txtWidth.Visible = false;
+                txtSide.Visible = false;
+                txtHeight.Visible = false;
+            }
+            else
+            {
+                // set other Textboxes to be visible
+                txtArea.Visible = true;
+                txtWidth.Visible = true;
+                txtSide.Visible = true;
+                txtHeight.Visible = true;
+
+            }
+        } // End the "Circle" RadioButton Event.
+
+
+
+        // "Square" RadioButton
+        private void rdbSqu_CheckedChanged(object sender, EventArgs e)
+        {
+            // if the user clicks "Square" RadioButton, only the "Side" TextBox is visible.
+            if (rdbSqu.Checked == true)
+            {
+                txtSide.Visible = true;
+                txtArea.Visible = false;
+                txtWidth.Visible = false;
+                txtHeight.Visible = false;
+                txtRadius.Visible = false;                
+            }
+            // else other Textboxes need to be visible
+            else
+            {
+                txtArea.Visible = true;
+                txtWidth.Visible = true;
+                txtHeight.Visible = true;
+                txtRadius.Visible = true;
+            }
+        } // End "Square" RadioButton Event.
+
+
+
+        // "Rectangle" RadioButton
+        private void rdbRec_CheckedChanged(object sender, EventArgs e)
+        {
+            // if the user clicks "Rectangle" RadioButton, only the "Height" and "Width" TextBoxes are visible.
+            if (rdbRec.Checked == true)
+            {
+                txtHeight.Visible = true;
+                txtWidth.Visible = true;
+                txtSide.Visible = false;
+                txtArea.Visible = false;
+                txtRadius.Visible = false;
+            }
+            // else other Textboxes need to be visible
+            else
+            {
+                txtArea.Visible = true;
+                txtSide.Visible = true;
+                txtRadius.Visible = true;
+            }
+        } // End "Rectangle" RadioButton Event.
+
+
+
+        // "Clear" Button
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            // Call the Clear() Method.
+            Clear();
+
+        } // End "Clear" Button Event.
+
+
+
+        // "Exit" Button
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // Call the Exit() Method.
+            Exit();
+
+        } // End "Exit" Button Event.
+
+
+
+        // "Clear" MenuItem
+        private void clearToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            // Call the Clear() Method.
+            Clear();
+
+        } // End "Clear" MenuItem Event.
+
+
+       // "Exit" MenuItem
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Call the Exit() Method.
+            Exit();
+
+        } // End "Exit" MenuItem Event.
+
+
+
+        // "Circle" MenuItem
+        private void circleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // make the "Circle" RadioButton to be checked.
+            rdbCir.Checked = true;
+
+            // If the "Circle" RadioButton is checked, only Radius Textbox is visible.
+            if (rdbCir.Checked == true)
+            {
+                txtRadius.Visible = true;
+                txtArea.Visible = false;
+                txtWidth.Visible = false;
+                txtSide.Visible = false;
+                txtHeight.Visible = false;
+            }
+            // else other TextBoxes are visible.
+            else
+            {
+                txtArea.Visible = true;
+                txtWidth.Visible = true;
+                txtSide.Visible = true;
+                txtHeight.Visible = true;
+            }
+        } // End "Circle" MenuItem
+
+
+
+        // "Square" MenuItem
+        private void squareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // make the "Square" Radiobutton to be checked.
+            rdbSqu.Checked = true;
+
+            // if the "Square" Radiobutton is checked, Only Side TextBox is visible.
+            if (rdbSqu.Checked == true)
+            {
+                txtSide.Visible = true;
+                txtArea.Visible = false;
+                txtWidth.Visible = false;
+                txtHeight.Visible = false;
+                txtRadius.Visible = false;
+            }
+            // else other TextBoxes are visible.
+            else
+            {
+                txtArea.Visible = true;
+                txtWidth.Visible = true;
+                txtHeight.Visible = true;
+                txtRadius.Visible = true;
+            }
+        } // end "Square" MenuItem
+
+
+
+        // "Rectangle" MenuItem
+        private void rectangleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // make the "Rectangle" RadioButton to be checked.
+            rdbRec.Checked = true;
+
+            // if the "Rectangle" RadioButton is checked, Only "Height" and "Width" Textboxes are visible.
+            if (rdbRec.Checked == true)
+            {
+                txtHeight.Visible = true;
+                txtSide.Visible = false;
+                txtWidth.Visible = true;
+                txtArea.Visible = false;
+                txtRadius.Visible = false;
+            }
+            // else other Textboxes are visible.
+            else
+            {
+                txtArea.Visible = true;
+                txtSide.Visible = true;
+                txtRadius.Visible = true;
+            }
+        } // End "Rectangle" MenuItem
+
+
+
+        // Calculate Button
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            // Declare variables to hold radius, side, height, width, and the area.
+            double radius;
+            double side;
+            double height;
+            double width;
+            double area;
+
+            // Area TextBox is visible
+            txtArea.Visible = true;
+
+            try
+            {
+                if (rdbCir.Checked == true)
+                {
+                    // Get the radius.
+                    radius = Convert.ToDouble(txtRadius.Text);
+
+                    // Get the area from the Circle() method
+                    area = Circle(radius);
+
+                    // Display the area of the Circle.
+                    txtArea.Text = area.ToString();
+
+                }
+                else if (rdbSqu.Checked == true)
+                {
+                    // Get the side.
+                    side = Convert.ToDouble(txtSide.Text);
+
+                    // Get the area from the Square() method
+                    area = Square(side);
+
+                    // Display the area of the Square.
+                    txtArea.Text = area.ToString();
+                }
+                else if (rdbRec.Checked == true)
+                {
+                    // Get the height.
+                    height = Convert.ToDouble(txtHeight.Text);
+
+                    // Get the width.
+                    width = Convert.ToDouble(txtWidth.Text);
+
+                    // Get the area of the Rectangle.
+                    area = Rectangle(height, width);
+
+                    // Display the area of the Rectangle.
+                    txtArea.Text = area.ToString();
+                }               
+            }
+            catch (Exception ex)
+            {
+                // Display an error message.
+                MessageBox.Show("Enter the number.");
+            }
+        } // End the "Calculate" Button event handler.
+
+
+
+        // Clear() Method
+        private void Clear()
+        {
+            // set all TextBoxes to be cleared.
+            txtArea.Clear();
+            txtHeight.Clear();
+            txtRadius.Clear();
+            txtSide.Clear();
+            txtWidth.Clear();
+
+            // set all TextBoxes to be visible.
+            txtArea.Visible = true;
+            txtHeight.Visible = true;
+            txtRadius.Visible = true;
+            txtSide.Visible = true;
+            txtWidth.Visible = true; 
+
+            // set all RadioButtons to false.
+            rdbCir.Checked = false;
+            rdbRec.Checked = false;
+            rdbSqu.Checked = false;
+            
+        } // End Clear() Method
+
+       // Exit() Method
+        private void Exit()
+        {
+            // ask the user to exit the program
+            MessageBox.Show("Are you sure you want to Exit? ");
+
+            // Exit the Application
+            Application.Exit();
+
+        } // End Exit() Method
+
+
+
+        // Circle() Method accepts a number of radius as an argument 
+        private double Circle(double radius)
+        {
+            // returns the area number of the circle.
+            return (3.14) * (radius * radius);
+            
+        } // End Circle() Method
+
+
+
+        // Square() Method accepts a number of side as an argument
+        private double Square (double side)
+        {
+            // returns the area number of the square.
+            return side * side;
+
+        } // End Square() Method
+
+
+
+        // Rectangle() Method accepts a number of height and a number of width as arguments
+        private double Rectangle (double height, double width)
+        {
+            // returns the area number of the rectangle.
+            return height * width;
+
+        } // End Rectangle() Method
+
+
+
+        // ListBox
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // if First index is selected
+            if (listBox1.SelectedIndex == 0)
+            {
+                // make the "Circle" RadioButton to check.
+                rdbCir.Checked = true;
+            }
+            // if Second index is selected
+            else if (listBox1.SelectedIndex == 1)
+            {
+                // make the "Square" RadioButton to check.
+                rdbSqu.Checked = true;
+            }
+            // if Third index is selected
+            else if (listBox1.SelectedIndex ==2)
+            {
+                // make the "Rectangle" RadioButton to check.
+                rdbRec.Checked = true;
+            }
+        } // End ListBox
+
+
+
+        // Combo Box
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // if First index is selected
+            if (comboBox1.SelectedIndex == 0)
+            {
+                // make the "Circle" RadioButton to check.
+                rdbCir.Checked = true;
+            }
+            // if Second index is selected
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                // make the "Square" RadioButton to check.
+                rdbSqu.Checked = true;
+            }
+            // if Third index is selected
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                // make the "Rectangle" RadioButton to check.
+                rdbRec.Checked = true;
+            }
+        } // end Combo Box
+
+
+    } // end Partial Class
+} // end namespace "Area"
