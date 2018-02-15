@@ -1,0 +1,199 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+
+namespace Calculator
+{
+    public partial class Form1 : Form
+    {
+        // declare the global variable m
+
+        public static string m;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void clearToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // Clear three textboxes
+
+            txtInput1.Clear();
+            txtInput2.Clear();
+            txtDisplay.Clear();
+        }
+
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // Close the application
+
+            Application.Exit();
+        }
+
+        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Change the background color to Red
+
+            this.BackColor = Color.Red;
+        }
+
+        private void blueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Change the background color to Blue
+
+            this.BackColor = System.Drawing.Color.Blue;
+        }
+
+        private void greenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Change the background color to Green
+
+            this.BackColor = System.Drawing.Color.Green;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // popup the message about the software and the verson of the software
+
+            MessageBox.Show("Microsoft Visual Studio 2017. Version 1.0");
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Local variables
+
+                String num1;
+                String num2;
+                double number1;
+                double number2;
+                double result;
+
+                // Get the numbers from the textboxes
+
+                num1 = txtInput1.Text;
+                num2 = txtInput2.Text;
+                number1 = double.Parse(num1);
+                number2 = double.Parse(num2);
+
+                // Determine the user clicks the Addition radiobutton
+                if (rdbAdd.Checked)
+                {
+                    // Add two numbers
+                    result = number1 + number2;                   
+                }
+                else
+                {
+                    // Determine the user clicks the Subtraction radiobutton
+                    if (rdbSubtract.Checked)
+                    {
+                        // Subtract numbers
+                        result = number1 - number2;                       
+                    }
+                    else
+                    {
+                        // Determine the user clicks the Multiply radiobutton
+                        if (rdbMultiply.Checked)
+                        {
+                            // Multiply numbers
+                            result = number1 * number2;                           
+                        }
+                        else
+                        {
+                            // Devide numbers when the user clicks the Devision radiobutton
+                            result = number1 / number2; 
+                        }                       
+                    }                   
+                }
+                // Display the result
+                txtDisplay.Text = result.ToString();
+            }
+            
+            catch (Exception ex)
+            {
+                // Display an error message
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            // Clear three textboxes
+
+            txtInput1.Clear();
+            txtInput2.Clear();
+            txtDisplay.Clear();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            // Close the application
+
+            Application.Exit();
+        }
+
+        private void btnForLoop_Click(object sender, EventArgs e)
+        {
+            // Using for loop to display "Go Falcons" ten times
+            for (int count = 1; count <= 10; count++)
+            {
+                // Display the message box
+                MessageBox.Show("Go Falcons");
+            }
+        }
+
+        private void btnWhileLoop_Click(object sender, EventArgs e)
+        {
+            // Declare a variable to count the loop iterations
+            int count = 1;
+
+            // Using while loop to display "Go Falcons" ten times
+            while (count <= 10)
+            {
+                // Display the message box.
+                MessageBox.Show("Go Falcons");
+
+                // Add one to count
+                count = count + 1;
+            }
+        }
+
+        private void btnM_Click(object sender, EventArgs e)
+        {
+            // Copy the answer textbox value
+
+            m = txtDisplay.Text.ToString();           
+        }
+
+        private void lblblank_MouseEnter(object sender, EventArgs e)
+        {
+            // Show the value of global variable on mouse enter
+
+            lblblank.Text = m;
+        }
+
+        private void lblblank_MouseLeave(object sender, EventArgs e)
+        {
+            // Clear the label text on mouse leave
+
+            lblblank.Text = "";
+        }
+
+        private void btnMplus_Click(object sender, EventArgs e)
+        {
+            // Copying the double textbox value
+
+            m += txtDisplay.Text;
+        }
+    }
+}
